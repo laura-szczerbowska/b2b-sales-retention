@@ -13,6 +13,8 @@
 W sprzedaży B2B kluczowe znaczenie ma szybkie wychwycenie momentu, w którym strategiczny klient zaczyna kupować mniej. Raport rozwiązuje ten problem bezpośrednio na poziomie bazy danych ERP: automatycznie liczy dynamikę sprzedaży kwartał do kwartału (QoQ) i kategoryzuje kondycję klienta, umożliwiając zespołowi sprzedaży podjęcie wczesnych działań retencyjnych.
 
 
+<br>
+
 
 ## Zastosowane technologie i wzorce analityczne
 * **Tymczasowe tabele logiczne** (CTE): Podział zapytania na dwa czytelne etapy - najpierw podsumowanie kwartalnych liczb, a dopiero potem ocena trendu.
@@ -20,6 +22,8 @@ W sprzedaży B2B kluczowe znaczenie ma szybkie wychwycenie momentu, w którym st
 * **Analiza danych historycznych** (`LAG`): Pobieranie sprzedaży z wcześniejszego kwartału dla każdego klienta osobno, bez konieczności wolnego dublowania tabel.
 * **Automatyczne flagowanie wyników** (`CASE WHEN`): Proste reguły biznesowe przypisujące klientowi czytelną etykietę (`Nowy okres`, `Spadek`, `Wzrost lub stabilnie`) w zależności od wyniku.
 
+
+<br>
 
 
 ## Podgląd wyników zapytania
@@ -31,6 +35,8 @@ W sprzedaży B2B kluczowe znaczenie ma szybkie wychwycenie momentu, w którym st
 | Vanguard Retail Inc | 2026-01-01 | 1 | 25 000,00 zł | *NULL* | `Nowy okres` |
 | Vanguard Retail Inc | 2026-04-01 | 1 | 70 000,00 zł | 25 000,00 zł | `Wzrost lub stabilnie` |
 
+
+<br>
 
 
 ## Wnioski i rekomendacje biznesowe
