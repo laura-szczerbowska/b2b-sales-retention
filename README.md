@@ -1,9 +1,7 @@
 # B2B Sales Retention & Trend Analysis (SQL Case Study)
 > **Note on Data:** All customer records, order volumes, and financial figures used in this project are strictly synthetic (mock data) generated for analytical demonstration purposes.
 
-
 <br>
-
 
 ## Business Context
 In B2B business models, identifying early signals of revenue contraction among Key Accounts is critical for proactive churn prevention. This project delivers an automated SQL-based reporting model designed for ERP databases to track quarter-over-quarter performance and categorize account trajectory.
