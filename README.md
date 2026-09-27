@@ -1,3 +1,7 @@
+<div align="right">
+  <a href="./README.pl.md">Polski</a> | <strong>English</strong>
+</div>
+
 # B2B Sales Retention & Trend Analysis (SQL Case Study)
 > **Note on Data:** All customer records, order volumes, and financial figures used in this project are strictly synthetic (mock data) generated for analytical demonstration purposes.
 
