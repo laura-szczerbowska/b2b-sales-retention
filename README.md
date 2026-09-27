@@ -1,5 +1,5 @@
 <div align="right">
-  <a href="./README.pl.md">Polski</a> | <strong>English</strong>
+  <a href="./README.pl.md">Polish</a> | <strong>English</strong>
 </div>
 
 # B2B Sales Retention & Trend Analysis (SQL Case Study)
