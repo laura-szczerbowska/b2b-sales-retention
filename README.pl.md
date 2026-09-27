@@ -8,6 +8,8 @@
 > **Uwaga dotycząca danych:** Wszelkie dane klientów, wolumeny zamówień oraz wartości finansowe wykorzystane w tym projekcie mają charakter wyłącznie syntetyczny i zostały wygenerowane na potrzeby projektu.
 
 
+<br>
+
 
 ## Kontekst biznesowy
 W sprzedaży B2B kluczowe znaczenie ma szybkie wychwycenie momentu, w którym strategiczny klient zaczyna kupować mniej. Raport rozwiązuje ten problem bezpośrednio na poziomie bazy danych ERP: automatycznie liczy dynamikę sprzedaży kwartał do kwartału (QoQ) i kategoryzuje kondycję klienta, umożliwiając zespołowi sprzedaży podjęcie wczesnych działań retencyjnych.
