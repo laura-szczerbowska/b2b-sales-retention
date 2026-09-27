@@ -6,10 +6,15 @@
 > **Note on Data:** All customer records, order volumes, and financial figures used in this project are strictly synthetic (mock data) generated for analytical demonstration purposes.
 
 
+<br>
+
+
 ## Business Context
 In B2B business models, identifying early signals of revenue contraction among Key Accounts is critical for proactive churn prevention. This project delivers an automated SQL-based reporting model designed for ERP databases to track quarter-over-quarter performance and categorize account trajectory.
 
----
+
+<br>
+
 
 ## Tech Stack & Analytical Patterns
 * **Common Table Expressions** (CTE): Isolates data aggregation from business classification logic.
@@ -17,7 +22,9 @@ In B2B business models, identifying early signals of revenue contraction among K
 * **Window Functions** (`LAG`): Retrieves prior-period revenue partitioned by customer without self-joins.
 * **Conditional Logic** (`CASE WHEN`): Automates account performance labeling (`New Period`, `Decline`, `Growth or Stable`).
 
----
+
+<br>
+
 
 ## Query Results Preview
 
@@ -28,7 +35,9 @@ In B2B business models, identifying early signals of revenue contraction among K
 | Vanguard Retail Inc | 2026-01-01 | 1 | $25,000.00 | *NULL* | `New Period` |
 | Vanguard Retail Inc | 2026-04-01 | 1 | $70,000.00 | $25,000.00 | `Growth or Stable` |
 
----
+
+<br>
+
 
 ## Business Recommendations
 1. **At-Risk Account Flagged:** Apex Solutions Ltd experienced a 58.3% QoQ revenue drop in Q2. An automated notification can be routed to the Key Account Director for an immediate retention review.
