@@ -4,6 +4,8 @@
 ## Business Context
 In B2B business models, identifying early signals of revenue contraction among Key Accounts is critical for proactive churn prevention. This project delivers an automated SQL-based reporting model designed for ERP databases to track quarter-over-quarter performance and categorize account trajectory.
 
+
+
 ---
 
 ## Tech Stack & Analytical Patterns
