@@ -1,23 +1,28 @@
-# Analiza Retencji i Trendu Przychodów B2B (Studium przypadku SQL w systemie ERP)
+<div align="right">
+  <a href="./README.md">Angielski</a> | <strong>Polski</strong>
+</div>
 
-> **Uwaga dotycząca danych:** Wszelkie dane klientów, wolumeny zamówień oraz wartości finansowe wykorzystane w tym projekcie mają charakter wyłącznie syntetyczny i zostały wygenerowane na potrzeby projektu analityczneego.
+
+# Analiza Retencji i Trendu Przychodów B2B
+
+> **Uwaga dotycząca danych:** Wszelkie dane klientów, wolumeny zamówień oraz wartości finansowe wykorzystane w tym projekcie mają charakter wyłącznie syntetyczny i zostały wygenerowane na potrzeby projektu.
 
 ---
 
 ## Kontekst biznesowy
-W modelach biznesowych B2B wczesne wykrywanie sygnałów spadku przychodów generowanych przez kluczowych klientów jest kluczowe dla skutecznego zapobiegania ich odejściu. Projekt dostarcza zautomatyzowany model raportowy SQL przygotowany pod bazy danych klasy ERP, który analizuje dynamikę sprzedaży kwartał do kwartału (QoQ) oraz kategoryzuje kondycję partnerów handlowych.
+W sprzedaży B2B kluczowe znaczenie ma szybkie wychwycenie momentu, w którym strategiczny klient zaczyna kupować mniej. Raport rozwiązuje ten problem bezpośrednio na poziomie bazy danych ERP: automatycznie liczy dynamikę sprzedaży kwartał do kwartału (QoQ) i kategoryzuje kondycję klienta, umożliwiając zespołowi sprzedaży podjęcie wczesnych działań retencyjnych.
 
 ---
 
-## 🛠️ Zastosowane technologie i wzorce analityczne
-* **Wspólne Wyrażenia Tablicowe** (CTE): Logiczne odseparowanie warstwy agregacji danych transakcyjnych od docelowej kategoryzacji biznesowej.
-* **Agregacja czasowa** (`DATE_TRUNC`): Spłaszczenie dokładnych znaczników czasu zamówień do spójnych okresów kwartalnych.
-* **Funkcje okna** (`LAG`): Pobieranie przychodu z poprzedniego kwartału w ramach partycji klienta bez konieczności stosowania kosztownych samozłączeń (self-join).
-* **Logika warunkowa** (`CASE WHEN`): Automatyczna klasyfikacja kondycji klienta na podstawie dynamiki sprzedaży (`Nowy okres`, `Spadek`, `Wzrost lub stabilnie`).
+## Zastosowane technologie i wzorce analityczne
+* **Tymczasowe tabele logiczne** (CTE): Podział zapytania na dwa czytelne etapy - najpierw podsumowanie kwartalnych liczb, a dopiero potem ocena trendu.
+* **Grupowanie po kwartałach** (`DATE_TRUNC`): Ujednolicenie dokładnych dat zamówień do pełnych kwartałów, co umożliwia rzetelne porównanie okres do okresu.
+* **Analiza danych historycznych** (`LAG`): Pobieranie sprzedaży z wcześniejszego kwartału dla każdego klienta osobno, bez konieczności wolnego dublowania tabel.
+* **Automatyczne flagowanie wyników** (`CASE WHEN`): Proste reguły biznesowe przypisujące klientowi czytelną etykietę (`Nowy okres`, `Spadek`, `Wzrost lub stabilnie`) w zależności od wyniku.
 
 ---
 
-## 📈 Podgląd wyników zapytania
+## Podgląd wyników zapytania
 
 | Nazwa firmy | Kwartał zamówienia | Liczba zamówień | Przychód kwartalny | Przychód z poprzedniego kwartału | Trend przychodów |
 | :--- | :---: | :---: | :---: | :---: | :--- |
@@ -28,6 +33,6 @@ W modelach biznesowych B2B wczesne wykrywanie sygnałów spadku przychodów gene
 
 ---
 
-## 💡 Wnioski i rekomendacje biznesowe
-1. **Identyfikacja zagrożonego klienta:** Klient *Apex Solutions Ltd* odnotował spadek przychodów o 58,3% kwartał do kwartału w Q2. Raport generuje wczesny alert dla Dyrektora Sprzedaży / Key Account Managera w celu podjęcia natychmiastowych działań retencyjnych.
+## Wnioski i rekomendacje biznesowe
+1. **Identyfikacja zagrożonego klienta:** Klient *Apex Solutions Ltd* odnotował spadek przychodów o 58,3% kwartał do kwartału w Q2. Raport generuje wczesny alert dla Dyrektora Sprzedaży w celu podjęcia natychmiastowych działań retencyjnych.
 2. **Warstwa zasilająca Business Intelligence:** Zapytanie może bezpośrednio pełnić rolę widoku bazodanowego dla narzędzi BI (Power BI, Tableau), eliminując konieczność pisania złożonych miar kalkulacyjnych po stronie raportu.
