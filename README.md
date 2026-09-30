@@ -6,7 +6,9 @@
 
 > **Uwaga dotycząca danych:** Wszystkie dane transakcyjne, nazwy kontrahentów oraz wartości finansowe wykorzystane w tym projekcie mają charakter syntetyczny i zostały wygenerowane wyłącznie na potrzeby demonstracyjne.
 
+
 <br>
+
 
 ## Kontekst biznesowy i cel projektu
 
@@ -15,7 +17,9 @@ W relacjach handlowych B2B systematyczny spadek wartości zamówień rzadko nast
 **Cel projektu:**
 Zbudowanie potoku analitycznego łączącego bazę danych ERP z interaktywnym dashboardem operacyjno-zarządczym w Power BI. Rozwiązanie agreguje transakcje do poziomów kwartalnych, śledzi dynamikę przychodów kwartał do kwartału (QoQ) oraz segmentuje portfel klientów pod kątem ryzyka retencyjnego.
 
+
 <br>
+
 
 ## Dashboard zarządczy Power BI (Executive Summary)
 
@@ -40,7 +44,9 @@ Raport umożliwia kadrze menedżerskiej natychmiastową identyfikację kontrahen
 - **Macierz statusowa (Formatowanie warunkowe):** Tabela szczegółowa z automatycznym wyróżnianiem statusu `Decline` w kolorze czerwonym.
 - **Interaktywny slicer (Choose company name...):** Dynamiczne filtrowanie całego widoku do wybranego kontrahenta.
 
+
 <br>
+
 
 ## Architektura rozwiązania i warstwa SQL
 
@@ -51,6 +57,10 @@ Zgodnie z zasadą *Database First*, złożone kalkulacje okresowe i logiczne fla
 2. **Normalizacja dat (`DATE_TRUNC`):** Ujednolicenie precyzyjnych sygnatur czasowych zamówień do pierwszego dnia kwartału.
 3. **Funkcje okna (`LAG() OVER (...)`):** Odczytanie wartości przychodu z poprzedniego kwartału per klient bez konieczności kosztownych złączeń własnych (`SELF JOIN`).
 4. **Logika warunkowa (`CASE WHEN`):** Klasyfikacja statusu kontraktu (`New Period`, `Decline`, `Growth or Stable`).
+
+
+<br>
+
 
 ```sql
 WITH quarterly_summary AS (
@@ -99,6 +109,9 @@ ORDER BY
 ```
 
 
+<br>
+
+
 ## Zestawienie danych wynikowych
 
 Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
@@ -132,7 +145,7 @@ Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
    - **Rekomendacja:** Zorganizowanie bezpośredniego spotkania na szczeblu dyrektorskim w celu weryfikacji przyczyn niezadowolenia (jakość obsługi, pricing, konkurencja).
 
 
-  <br>
+<br>
 
 	 
 <img width="1372" height="775" alt="dashboard1" src="https://github.com/user-attachments/assets/8385a468-4515-4d45-913c-548f37a6f948" />
