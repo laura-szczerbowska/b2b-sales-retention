@@ -148,7 +148,8 @@ Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
 <br>
 
 	 
-<img width="1372" height="775" alt="dashboard1" src="https://github.com/user-attachments/assets/8385a468-4515-4d45-913c-548f37a6f948" />
+<img width="1375" height="772" alt="dashboard2" src="https://github.com/user-attachments/assets/439038ec-e450-415c-bb44-ebf545077b15" />
+
 
 
 <br>
