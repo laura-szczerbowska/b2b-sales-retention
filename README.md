@@ -104,6 +104,10 @@ ORDER BY
     order_quarter ASC;
 ```
 
+
+<br>
+
+
 ## Tabular Output Preview
 
 The model evaluates a full financial year (FY2025) across 4 strategic B2B accounts:
@@ -145,6 +149,8 @@ The model evaluates a full financial year (FY2025) across 4 strategic B2B accoun
 <br>
 
 
+
+
 2. **Primary Revenue Engine (Vanguard Retail Inc):**
    - Scaled rapidly from 25k PLN in Q1 to 110k PLN in Q4 (+340% YoY expansion).
    - **Recommendation:** Transition the account into an enterprise loyalty tier and lock in a multi-year master service agreement (MSA).
@@ -176,13 +182,16 @@ cd b2b-revenue-retention-analysis
 ```
 
 Open the Power BI Dashboard
+```
 Open the file b2b_revenue_retention_dashboard.pbix directly in Power BI Desktop.
 The report includes an embedded data model, providing immediate interactivity across slicers, cross-filtering, and dynamic tooltips.
+```
 
 Review the SQL Query
+```
 Open b2b_revenue_analysis.sql in any code editor or database client.
 The script provides the complete end-to-end data pipeline, including CTEs, LAG() window functions, and CASE WHEN business logic.
-
+```
 
 <br>
 
