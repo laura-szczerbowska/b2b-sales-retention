@@ -1,37 +1,60 @@
--- 1. Table: customers
+-- NOTE: All data contained in this script is synthetic/mock data created solely for project demonstration.
+
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS customers;
+
+-- 1. Customers Table
 CREATE TABLE customers (
-    customer_id INT PRIMARY KEY,
+    customer_id SERIAL PRIMARY KEY,
     company_name VARCHAR(100) NOT NULL,
-    segment VARCHAR(50) NOT NULL -- 'Key Account', 'Standard'
+    segment VARCHAR(50) NOT NULL,
+    country VARCHAR(50) NOT NULL
 );
 
--- 2. Table: orders
+-- 2. Orders Table
 CREATE TABLE orders (
-    order_id INT PRIMARY KEY,
+    order_id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(customer_id),
-    order_date TIMESTAMP NOT NULL,
-    net_amount NUMERIC(12, 2) NOT NULL,
-    status VARCHAR(50) NOT NULL -- 'Completed', 'Cancelled'
+    order_date DATE NOT NULL,
+    net_amount NUMERIC(10, 2) NOT NULL,
+    status VARCHAR(20) NOT NULL
 );
 
--- 3. Mock Data Insertion
-INSERT INTO customers (customer_id, company_name, segment) VALUES
-(1, 'Apex Solutions Ltd', 'Key Account'),
-(2, 'Vanguard Retail Inc', 'Key Account'),
-(3, 'Local Corner Shop', 'Standard'); -- Control record: should be filtered out
+-- 3. Seed Customers
+INSERT INTO customers (customer_id, company_name, segment, country) VALUES
+(1, 'Apex Solutions Ltd', 'Key Account', 'Poland'),
+(2, 'Vanguard Retail Inc', 'Key Account', 'Germany'),
+(3, 'Nordic Logistics AS', 'Key Account', 'Sweden'),
+(4, 'Syllable Tech Sp. z o.o.', 'Key Account', 'Poland'),
+(5, 'Local Bistro Group', 'Standard', 'Poland'),
+(6, 'Metro Supplies S.A.', 'Standard', 'Germany');
 
-INSERT INTO orders (order_id, customer_id, order_date, net_amount, status) VALUES
--- Apex Solutions (Revenue Drop)
-(101, 1, '2026-01-15 10:00:00', 80000.00, 'Completed'),
-(102, 1, '2026-02-20 14:00:00', 40000.00, 'Completed'),
-(103, 1, '2026-05-10 11:30:00', 50000.00, 'Completed'),
+-- 4. Seed Orders (Full Year 2025 across 4 quarters)
+INSERT INTO orders (customer_id, order_date, net_amount, status) VALUES
+-- Customer 1: Apex Solutions (Pattern: Clear Decline / Churn Risk)
+(1, '2025-01-15', 75000.00, 'Completed'),
+(1, '2025-02-20', 45000.00, 'Completed'), -- Q1 total: 120,000
+(1, '2025-04-10', 50000.00, 'Completed'), -- Q2 total: 50,000 (Decline)
+(1, '2025-07-12', 30000.00, 'Completed'), -- Q3 total: 30,000 (Decline)
+(1, '2025-10-05', 20000.00, 'Completed'), -- Q4 total: 20,000 (Decline)
 
--- Vanguard Retail (Revenue Growth)
-(104, 2, '2026-02-01 09:00:00', 25000.00, 'Completed'),
-(105, 2, '2026-04-12 16:00:00', 70000.00, 'Completed'),
+-- Customer 2: Vanguard Retail (Pattern: Consistent Strong Growth)
+(2, '2025-03-01', 25000.00, 'Completed'), -- Q1 total: 25,000
+(2, '2025-05-18', 70000.00, 'Completed'), -- Q2 total: 70,000 (Growth)
+(2, '2025-08-22', 85000.00, 'Completed'), -- Q3 total: 85,000 (Growth)
+(2, '2025-11-15', 110000.00, 'Completed'), -- Q4 total: 110,000 (Growth)
 
--- Cancelled order (should be excluded from revenue)
-(106, 2, '2026-05-01 12:00:00', 100000.00, 'Cancelled'),
+-- Customer 3: Nordic Logistics (Pattern: Fluctuation / Recovery)
+(3, '2025-02-10', 60000.00, 'Completed'), -- Q1 total: 60,000
+(3, '2025-04-25', 62000.00, 'Completed'), -- Q2 total: 62,000 (Growth/Stable)
+(3, '2025-09-05', 40000.00, 'Completed'), -- Q3 total: 40,000 (Decline)
+(3, '2025-11-28', 65000.00, 'Completed'), -- Q4 total: 65,000 (Growth/Rebound)
 
--- Standard customer order (should be excluded by customer segment filter)
-(107, 3, '2026-01-10 10:00:00', 5000.00, 'Completed');
+-- Customer 4: Syllable Tech (Pattern: Newly Acquired Account in Q3)
+(4, '2025-08-14', 45000.00, 'Completed'), -- Q3 total: 45,000 (New Period)
+(4, '2025-10-20', 55000.00, 'Completed'), -- Q4 total: 55,000 (Growth)
+
+-- Standard Segment & Cancelled Orders (Boundary testing for WHERE filters)
+(5, '2025-01-20', 12000.00, 'Completed'),
+(6, '2025-03-15', 8000.00, 'Completed'),
+(1, '2025-05-01', 99000.00, 'Cancelled');
