@@ -136,7 +136,7 @@ The model evaluates a full financial year (FY2025) across 4 strategic B2B accoun
 ## Analytical Insights & Prescriptive Business Actions
 
 1. **Urgent Retention Alert - Case Study: Apex Solutions Ltd:**
-   - Generated the portfolio's highest initial baseline in Q1 (120k PLN), followed by three consecutive quarterly declines: 50k$\to$30k$\to$20k PLN (-83.3% YoY total contraction).
+   - Generated the portfolio's highest initial baseline in Q1 (120k PLN), followed by three consecutive quarterly declines: 50k $\to$ 30k $\to$ 20k PLN (-83.3% YoY total contraction).
    - **Recommendation:** Initiate an executive-level account review to investigate potential friction points (pricing pressure, operational SLA breaches, or competitor displacement).
 
 <br>
