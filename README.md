@@ -38,7 +38,7 @@ The report enables leadership to instantly detect high-risk accounts (*At Risk A
 ### Key Dashboard Components:
 - **Core KPI Cards:** High-level summary of total completed orders (15) and gross portfolio revenue (837.00k PLN).
 - **"At Risk Accounts" KPI:** Critical alert indicator flagging accounts with declining revenue in the most recent period (2 accounts).
-- **Line Chart (Quarterly Revenue Trend by Key Account):** Visualizing multi-directional revenue trajectories across FY2025 (Q1–Q4).
+- **Line Chart (Quarterly Revenue Trend by Key Account):** Visualizing multi-directional revenue trajectories across FY2025 (Q1-Q4).
 - **Bar Chart (Total Orders by Company):** Breakdown of total transaction engagement per account.
 - **Status Matrix (Conditional Formatting):** Detailed account performance table featuring automated red highlights for the `Decline` status.
 - **Interactive Slicer (Choose company name...):** Dynamic cross-filtering isolating specific client accounts.
@@ -135,8 +135,8 @@ The model evaluates a full financial year (FY2025) across 4 strategic B2B accoun
 
 ## Analytical Insights & Prescriptive Business Actions
 
-1. **Urgent Retention Alert – Case Study: Apex Solutions Ltd:**
-   - Generated the portfolio's highest initial baseline in Q1 (120k PLN), followed by three consecutive quarterly declines: 50k $\to$ 30k $\to$ 20k PLN (-83.3% YoY total contraction).
+1. **Urgent Retention Alert - Case Study: Apex Solutions Ltd:**
+   - Generated the portfolio's highest initial baseline in Q1 (120k PLN), followed by three consecutive quarterly declines: 50k$\to$30k$\to$20k PLN (-83.3% YoY total contraction).
    - **Recommendation:** Initiate an executive-level account review to investigate potential friction points (pricing pressure, operational SLA breaches, or competitor displacement).
 
 <br>
@@ -153,7 +153,7 @@ The model evaluates a full financial year (FY2025) across 4 strategic B2B accoun
 
 2. **Primary Revenue Engine (Vanguard Retail Inc):**
    - Scaled rapidly from 25k PLN in Q1 to 110k PLN in Q4 (+340% YoY expansion).
-   - **Recommendation:** Transition the account into an enterprise loyalty tier and lock in a multi-year master service agreement (MSA).
+   - **Recommendation:** Transition the account into an enterprise loyalty tier and lock in a multi-year master service agreement.
 
 3. **Seasonality vs. Normalization (Nordic Logistics AS):**
    - Experienced a temporary dip in Q3 (40k PLN), but fully rebounded in Q4 to 65k PLN.
