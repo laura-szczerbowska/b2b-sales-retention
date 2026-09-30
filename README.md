@@ -22,7 +22,14 @@ Zbudowanie potoku analitycznego łączącego bazę danych ERP z interaktywnym da
 Raport umożliwia kadrze menedżerskiej natychmiastową identyfikację kontrahentów z grupy ryzyka (*At Risk Accounts*) oraz przekrojową ocenę wolumenu i przychodu w ujęciu kwartalnym:
 
 
+<br>
+
+
 <img width="1375" height="776" alt="dashboard" src="https://github.com/user-attachments/assets/5262e376-8f39-4f7f-b7f7-ba6c04d0d9f2" />
+
+
+<br>
+
 
 
 ### Kluczowe komponenty raportu:
@@ -50,9 +57,11 @@ WITH quarterly_summary AS (
     SELECT
         c.customer_id,
         c.company_name,
+-- Sprowadzenie daty zamówienia do pierwszego dnia kwartału
         DATE_TRUNC('quarter', o.order_date) AS order_quarter,
         SUM(o.net_amount) AS quarterly_revenue,
         COUNT(o.order_id) AS total_orders,
+-- Pobranie przychodu z poprzedniego kwartału per klient (funkcja okna)
         LAG(SUM(o.net_amount), 1) OVER (
             PARTITION BY c.customer_id 
             ORDER BY DATE_TRUNC('quarter', o.order_date) ASC
@@ -61,7 +70,7 @@ WITH quarterly_summary AS (
     FROM customers c
     INNER JOIN orders o 
         ON c.customer_id = o.customer_id
-		
+-- Zawężenie do strategicznych kontrahentów i zrealizowanych transakcji
     WHERE c.segment ='Key Account'
       AND o.status = 'Completed'
     GROUP BY
@@ -75,6 +84,7 @@ SELECT
     total_orders,
     quarterly_revenue,
     previous_quarter_revenue,
+-- Klasyfikacja dynamiki sprzedaży
     CASE
         WHEN previous_quarter_revenue IS NULL THEN 'New Period'
         WHEN quarterly_revenue < previous_quarter_revenue THEN 'Decline'
@@ -120,9 +130,16 @@ Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
    - Klient generował w Q1 największy pojedynczy przychód (120 tys. zł).
    - W kolejnych kwartałach nastąpił stały spadek: 50 tys. $\to$ 30 tys. $\to$ 20 tys. zł (łącznie -83,3% w skali roku).
    - **Rekomendacja:** Zorganizowanie bezpośredniego spotkania na szczeblu dyrektorskim w celu weryfikacji przyczyn niezadowolenia (jakość obsługi, pricing, konkurencja).
-  
-     
+
+
+  <br>
+
+	 
 <img width="1372" height="775" alt="dashboard1" src="https://github.com/user-attachments/assets/8385a468-4515-4d45-913c-548f37a6f948" />
+
+
+<br>
+
 
 
 2. **Główny motor wzrostu (Vanguard Retail Inc):**
@@ -136,6 +153,36 @@ Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
 4. **Ekspansja nowego kontrahenta (Syllable Tech Sp. z o.o.):**
    - Pozyskanie klienta w Q3 (45 tys. zł) i natychmiastowy wzrost w Q4 (55 tys. zł).
    - **Rekomendacja:** Przygotowanie dedykowanej oferty cross-sellingowej na nadchodzący rok obrotowy.
+
+
+<br>
+
+
+## Jak uruchomić i odtworzyć projekt
+
+### Wymagania wstępne:
+- Zainstalowanie programu **Power BI Desktop**.
+- Opcjonalnie: silnik bazy danych (PostgreSQL).
+
+---
+
+Sklonowanie repozytorium na dysk lokalny:
+```
+git clone https://github.com/laura-szczerbowska/b2b-revenue-retention-analysis.git
+cd b2b-revenue-retention-analysis
+```
+
+Uruchomienie dashboardu Power BI
+```
+Otwórz plik b2b_revenue_retention_dashboard.pbix bezpośrednio w programie Power BI Desktop.
+Plik posiada osadzony model danych - raport jest od razu w pełni interaktywny (filtry, slicery, drill-down).
+```
+
+Weryfikacja zapytania SQL
+```
+Otwórz plik b2b_revenue_analysis.sql w edytorze kodu lub narzędziu bazodanowym.
+Zapytanie zawiera pełną logikę agregacji, funkcję okna LAG() oraz kategoryzację statusów za pomocą CASE WHEN.
+```
 
 
 <br>
