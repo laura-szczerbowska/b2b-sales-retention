@@ -1,5 +1,5 @@
 <div align="right">
-  <a href="./README.en.md">English</a> | <strong>Polski</strong>
+  <a href="./README.md">English</a> | <strong>Polski</strong>
 </div>
 
 # Analiza Retencji i Trendu Przychodów B2B (SQL & Power BI)
@@ -157,7 +157,7 @@ Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
 
 2. **Główny motor wzrostu (Vanguard Retail Inc):**
    - Skalowanie współpracy z poziomu 25 tys. zł w Q1 do 110 tys. zł w Q4 (+340% r/r).
-   - **Rekomendacja:** Objęcie klienta dedykowanym programem partnerskim i zaoferowanie kontraktu długoterminowego (SLA).
+   - **Rekomendacja:** Objęcie klienta dedykowanym programem partnerskim i zaoferowanie kontraktu długoterminowego.
 
 3. **Sezonowość vs. stabilizacja (Nordic Logistics AS):**
    - Spadek w Q3 (do 40 tys. zł) miał charakter przejściowy; w Q4 nastąpiło odbicie do 65 tys. zł.
