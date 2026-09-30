@@ -142,7 +142,7 @@ The model evaluates a full financial year (FY2025) across 4 strategic B2B accoun
 <br>
 
 
-<img width="1372" height="775" alt="dashboard1" src="https://github.com/user-attachments/assets/59b6427e-5c64-4fa5-8692-bbc3a54339cd" />
+<img width="1375" height="772" alt="dashboard2" src="https://github.com/user-attachments/assets/94fafbc6-feb7-4826-8b72-35fcb1e8981f" />
 
 
 
