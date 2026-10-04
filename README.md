@@ -22,33 +22,6 @@ Develop an end-to-end analytical pipeline linking an ERP database directly to an
 
 
 
-## System Architecture & Data Flow
-
-```text
-1. Database Schema & Mock Ingestion (01_schema_and_data.sql)
-   ├── DDL: Creation of relational tables (customers, orders with PK/FK constraints)
-   └── Mock ERP Data: Synthetic transactional records designed with specific behavioral patterns
-       │
-       ▼
-2. SQL Analytical & Transformation Layer (02_sales_trend_report.sql)
-   ├── Inner Join & Filtering: Strategic 'Key Account' segment & 'Completed' orders
-   ├── Normalization: DATE_TRUNC('quarter', order_date) boundary alignment
-   ├── Time-Series Window Function: LAG() OVER (PARTITION BY customer_id ORDER BY quarter)
-   └── Account Health Categorization: CASE WHEN logic ('Decline', 'Growth or Stable', 'New Period')
-       │
-       ▼
-3. Power BI Executive Reporting Layer (b2b_revenue_retention_dashboard.pbix)
-   ├── KPI Alert Cards: At Risk Accounts flag & Total Portfolio Revenue
-   ├── Trend Visuals: FY2025 Quarterly Revenue trajectory by account
-   └── Dynamic Risk Matrix: Conditional color-coded status tracking with cross-filtering slicers
-
-```
-
-
-<br>
-
-
-
 ## Power BI Executive Dashboard
 
 The report enables leadership to instantly detect high-risk accounts (*At Risk Accounts*) while tracking cross-sectional order volumes and quarterly revenue trajectories:
@@ -71,7 +44,35 @@ The report enables leadership to instantly detect high-risk accounts (*At Risk A
 - **Status Matrix (Conditional Formatting):** Detailed account performance table featuring automated red highlights for the `Decline` status.
 - **Interactive Slicer (Choose company name...):** Dynamic cross-filtering isolating specific client accounts.
 
+
 <br>
+
+
+## System Architecture & Data Flow
+
+```text
+1. Database Schema & Mock Ingestion (01_schema_and_data.sql)
+   ├── DDL: Creation of relational tables (customers, orders with PK/FK constraints)
+   └── Mock ERP Data: Synthetic transactional records designed with specific behavioral patterns
+       │
+       ▼
+2. SQL Analytical & Transformation Layer (02_sales_trend_report.sql)
+   ├── Inner Join & Filtering: Strategic 'Key Account' segment & 'Completed' orders
+   ├── Normalization: DATE_TRUNC('quarter', order_date) boundary alignment
+   ├── Time-Series Window Function: LAG() OVER (PARTITION BY customer_id ORDER BY quarter)
+   └── Account Health Categorization: CASE WHEN logic ('Decline', 'Growth or Stable', 'New Period')
+       │
+       ▼
+3. Power BI Executive Reporting Layer (b2b_revenue_retention_dashboard.pbix)
+   ├── KPI Alert Cards: At Risk Accounts flag & Total Portfolio Revenue
+   ├── Trend Visuals: FY2025 Quarterly Revenue trajectory by account
+   └── Dynamic Risk Matrix: Conditional color-coded status tracking with cross-filtering slicers
+
+```
+
+<br>
+
+
 
 ## Architecture & SQL Analytical Layer
 
