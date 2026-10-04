@@ -47,6 +47,8 @@ Raport umożliwia kadrze menedżerskiej natychmiastową identyfikację kontrahen
 
 <br>
 
+### Architektura systemu i przepływ danych
+
 
 1. Schemat Bazy Danych i Zasilenie Danych (01_init_schema_and_seed.sql)
    ├── DDL: Utworzenie tabel relacyjnych (customers, orders z kluczami PK/FK)
@@ -192,6 +194,8 @@ Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
 
 <br>
 
+
+## Struktura repozytorium
 
 b2b-sales-retention-sql/
 ├── sql/
