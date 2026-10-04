@@ -177,7 +177,7 @@ The model evaluates a full financial year (FY2025) across 4 strategic B2B accoun
 
 Clone the repository
 ```bash
-git clone [https://github.com/laura-szczerbowska/b2b-revenue-retention-analysis.git](https://github.com/laura-szczerbowska/b2b-revenue-retention-analysis.git)
+git clone https://github.com/laura-szczerbowska/b2b-revenue-retention-analysis.git
 cd b2b-revenue-retention-analysis
 ```
 
