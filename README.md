@@ -25,17 +25,16 @@ Develop an end-to-end analytical pipeline linking an ERP database directly to an
 ## System Architecture & Data Flow
 
 ```text
-PostgreSQL ERP Database (Raw Tables: customers, orders)
+1. Database Schema & Mock Ingestion (01_schema_and_data.sql)
+   ├── DDL: Creation of relational tables (customers, orders with PK/FK constraints)
+   └── Mock ERP Data: Synthetic transactional records designed with specific behavioral patterns
        │
        ▼
-1. SQL Transformation Layer (b2b_revenue_analysis.sql)
+2. SQL Analytical & Transformation Layer (02_sales_trend_report.sql)
    ├── Inner Join & Filtering: Strategic 'Key Account' segment & 'Completed' orders
    ├── Normalization: DATE_TRUNC('quarter', order_date) boundary alignment
    ├── Time-Series Window Function: LAG() OVER (PARTITION BY customer_id ORDER BY quarter)
    └── Account Health Categorization: CASE WHEN logic ('Decline', 'Growth or Stable', 'New Period')
-       │
-       ▼
-2. Direct / Import Ingestion to Power BI
        │
        ▼
 3. Power BI Executive Reporting Layer (b2b_revenue_retention_dashboard.pbix)
@@ -201,7 +200,8 @@ The model evaluates a full financial year (FY2025) across 4 strategic B2B accoun
 ```text
 b2b-sales-retention/
 ├── sql/
-│   └── b2b_revenue_analysis.sql           # End-to-end CTEs, LAG() window functions, and categorization logic
+│   └── 01_schema_and_data.sql           # End-to-end CTEs, LAG() window functions, and categorization logic
+│ 	└── 02_sales_trend_report.sql  
 ├── b2b_revenue_retention_dashboard.pbix   # Production Power BI dashboard with embedded dataset
 ├── README.md                              # English documentation
 └── README.pl.md                           # Polish documentation
