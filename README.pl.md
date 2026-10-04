@@ -48,6 +48,27 @@ Raport umożliwia kadrze menedżerskiej natychmiastową identyfikację kontrahen
 <br>
 
 
+1. Schemat Bazy Danych i Zasilenie Danych (01_init_schema_and_seed.sql)
+   ├── DDL: Utworzenie tabel relacyjnych (customers, orders z kluczami PK/FK)
+   └── Dane testowe (Seed): Syntetyczne rekordy transakcyjne z zaplanowanymi wzorcami zachowań klientów
+       │
+       ▼
+2. Warstwa Analityczna i Transformacji SQL (02_b2b_revenue_analysis.sql)
+   ├── Relacja i filtrowanie: Segment strategiczny 'Key Account' oraz status 'Completed'
+   ├── Normalizacja czasu: Zaokrąglenie do granic kwartałów za pomocą DATE_TRUNC()
+   ├── Analiza szeregu czasowego: Funkcja okna LAG() OVER (PARTITION BY customer_id ORDER BY kwartał)
+   └── Kategoryzacja kondycji kont: Logika CASE WHEN ('Decline', 'Growth or Stable', 'New Period')
+       │
+       ▼
+3. Warstwa Raportowa Power BI (b2b_revenue_retention_dashboard.pbix)
+   ├── Kafelki alertowe KPI: Liczba kont zagrożonych odejściem ('At Risk Accounts') i Przychód
+   ├── Analiza trendu: Wykres liniowy dynamiki sprzedaży kwartał do kwartału (FY2025)
+   └── Macierz kondycji kont: Formatowanie warunkowe statusów z dynamicznym filtrowaniem klientów
+
+
+<br>
+
+
 ## Architektura rozwiązania i warstwa SQL
 
 Zgodnie z zasadą *Database First*, złożone kalkulacje okresowe i logiczne flagowanie trendów zostały zrealizowane bezpośrednio w zapytaniu SQL, odciążając silnik Power BI i eliminując potrzebę tworzenia skomplikowanych miar DAX.
@@ -167,6 +188,18 @@ Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
 4. **Ekspansja nowego kontrahenta (Syllable Tech Sp. z o.o.):**
    - Pozyskanie klienta w Q3 (45 tys. zł) i natychmiastowy wzrost w Q4 (55 tys. zł).
    - **Rekomendacja:** Przygotowanie dedykowanej oferty cross-sellingowej na nadchodzący rok obrotowy.
+
+
+<br>
+
+
+b2b-sales-retention-sql/
+├── sql/
+│   ├── 01_schema_and_data.sql        # Schemat tabel DDL oraz zasilenie danymi testowymi
+│   └── 02_sales_trend_reports.sql        # Zapytanie analityczne z CTE, LAG() i logiką statusów
+├── b2b_revenue_retention_dashboard.pbix   # Raport Power BI z gotowym modelem danych
+├── README.md
+└── README.pl.md
 
 
 <br>
