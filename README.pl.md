@@ -182,8 +182,8 @@ Model przetwarza pełen rok obrotowy 2025 dla 4 kluczowych kontrahentów:
 
 Sklonowanie repozytorium na dysk lokalny:
 ```
-git clone https://github.com/laura-szczerbowska/b2b-revenue-retention-analysis.git
-cd b2b-revenue-retention-analysis
+git clone https://github.com/laura-szczerbowska/b2b-sales-retention.git
+cd b2b-sales-retention
 ```
 
 Uruchomienie dashboardu Power BI
