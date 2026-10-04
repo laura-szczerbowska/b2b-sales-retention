@@ -21,6 +21,35 @@ Develop an end-to-end analytical pipeline linking an ERP database directly to an
 <br>
 
 
+
+## System Architecture & Data Flow
+
+```text
+PostgreSQL ERP Database (Raw Tables: customers, orders)
+       │
+       ▼
+1. SQL Transformation Layer (b2b_revenue_analysis.sql)
+   ├── Inner Join & Filtering: Strategic 'Key Account' segment & 'Completed' orders
+   ├── Normalization: DATE_TRUNC('quarter', order_date) boundary alignment
+   ├── Time-Series Window Function: LAG() OVER (PARTITION BY customer_id ORDER BY quarter)
+   └── Account Health Categorization: CASE WHEN logic ('Decline', 'Growth or Stable', 'New Period')
+       │
+       ▼
+2. Direct / Import Ingestion to Power BI
+       │
+       ▼
+3. Power BI Executive Reporting Layer (b2b_revenue_retention_dashboard.pbix)
+   ├── KPI Alert Cards: At Risk Accounts flag & Total Portfolio Revenue
+   ├── Trend Visuals: FY2025 Quarterly Revenue trajectory by account
+   └── Dynamic Risk Matrix: Conditional color-coded status tracking with cross-filtering slicers
+
+```
+
+
+<br>
+
+
+
 ## Power BI Executive Dashboard
 
 The report enables leadership to instantly detect high-risk accounts (*At Risk Accounts*) while tracking cross-sectional order volumes and quarterly revenue trajectories:
@@ -162,6 +191,21 @@ The model evaluates a full financial year (FY2025) across 4 strategic B2B accoun
 4. **New Account Expansion (Syllable Tech Sp. z o.o.):**
    - Onboarded mid-year in Q3 (45k PLN) with immediate organic expansion in Q4 (55k PLN).
    - **Recommendation:** Deploy a cross-selling strategy targeting complementary product lines for the upcoming fiscal year.
+
+
+<br>
+
+
+## Repository Structure
+
+```text
+b2b-sales-retention/
+├── sql/
+│   └── b2b_revenue_analysis.sql           # End-to-end CTEs, LAG() window functions, and categorization logic
+├── b2b_revenue_retention_dashboard.pbix   # Production Power BI dashboard with embedded dataset
+├── README.md                              # English documentation
+└── README.pl.md                           # Polish documentation
+```
 
 
 <br>
